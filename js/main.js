@@ -228,43 +228,40 @@ function bloquearIP(direccionIP) {
 }*/
 
 //Funcion muestra las ip filtradas
-function mostrarResultados(resultados){
-const table = document.getElementById("tablaFil").querySelector("tbody");
-table.innerHTML = "";
-let contador = 1;
-ipsGuardadas.forEach(ip => {
-  const row = table.insertRow(-1);
+function mostrarResultados(resultados) {
+  const table = document.getElementById("tablaFil").querySelector("tbody");
+  table.innerHTML = "";
+  let contador = 1;
+  resultados.forEach(ip => {
+    const row = table.insertRow(-1);
 
-  const cellContador = row.insertCell(0);
-  cellContador.textContent = contador++;
+    const cellContador = row.insertCell(0);
+    cellContador.textContent = contador++;
 
-  const cellIp = row.insertCell(1);
-  cellIp.textContent = ip.ip;
+    const cellIp = row.insertCell(1);
+    cellIp.textContent = ip.ip;
 
-  const cellClase = row.insertCell(2);
-  cellClase.textContent = ip.claseIP;
+    const cellClase = row.insertCell(2);
+    cellClase.textContent = ip.claseIP;
 
+    const cellEstado = row.insertCell(3);
+    cellEstado.textContent = ip.estado;
 
-  const cellEstado = row.insertCell(3);
-  cellEstado.textContent = ip.estado;
+    const cellOrganizacion = row.insertCell(4);
+    cellOrganizacion.textContent =  ip.organizacion;
 
-  const cellOrganizacion = row.insertCell(4);
-  cellOrganizacion.textContent =  ip.organizacion;
+    const cellPais = row.insertCell(5);
+    cellPais.textContent = ip.pais;
 
-  const cellPais = row.insertCell(5);
-  cellPais.textContent = ip.pais;
+    const cellCiudad = row.insertCell(6);
+    cellCiudad.textContent = ip.ciudad;
 
+    const cellPostal = row.insertCell(7);
+    cellPostal.textContent = ip.postal;
 
-  const cellCiudad = row.insertCell(6);
-  cellCiudad.textContent = ip.ciudad;
-
-  const cellPostal = row.insertCell(7);
-  cellPostal.textContent = ip.postal;
-
-
-  const cellRegion = row.insertCell(8);
-  cellRegion.textContent = ip.region;
-});    
+    const cellRegion = row.insertCell(8);
+    cellRegion.textContent = ip.region;
+  });
 }
 //capturar datos para filtrar,  y evita que el formulariorecargue la pagina cuando se envia
 
@@ -275,7 +272,7 @@ function filtrarIPsGuardadas(pais, responsable, clases) {
            (!responsable || ip.responsable.toLowerCase().includes(responsable.toLowerCase())) &&
            (clases.length === 0 || clases.includes(ip.claseIP));
   });
-
+  console.log("Resultados del filtrado:", resultados);
   // Mostrar los resultados del filtrado en la interfaz de usuario
   mostrarResultados(resultados);
 }
